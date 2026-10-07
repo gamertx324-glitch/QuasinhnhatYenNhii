@@ -1,0 +1,151 @@
+body {
+    margin: 0; padding: 0;
+    background: #fff0f5;
+    background-image: radial-gradient(circle at center, #ffffff 0%, #ffe3ec 100%);
+    height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden; color: #4a2840; text-align: center;
+    position: relative;
+    perspective: 1500px; /* Tăng chiều sâu không gian cho hiệu ứng lật trang */
+}
+canvas {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; pointer-events: none; display: none;
+}
+.heart-particle {
+    position: absolute; bottom: -20px; color: rgba(255, 182, 193, 0.8);
+    font-size: 1.5rem; pointer-events: none; z-index: 1;
+    animation: floatUp 4s linear infinite;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-105vh) translateX(var(--moveX)) rotate(360deg); opacity: 0; }
+}
+
+.container {
+    position: relative; width: 90%; max-width: 440px; height: 620px; z-index: 5;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+}
+
+/* NÂNG CẤP: Hiệu ứng lật trang 3D mượt mà cho tấm thiệp */
+.section {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 20px 45px rgba(255, 105, 180, 0.15);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 182, 193, 0.5);
+    border-radius: 36px; padding: 30px; box-sizing: border-box;
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    
+    /* Trạng thái ẩn: lật ra sau và ẩn đi */
+    opacity: 0;
+    transform: rotateY(-70deg) scale(0.85) translateZ(-100px);
+    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+/* Trạng thái hiển thị kích hoạt chuẩn chỉnh */
+.section.active {
+    display: flex; opacity: 1; transform: rotateY(0deg) scale(1) translateZ(0);
+}
+
+/* NÂNG CẤP: Tạo chuyển động xuất hiện tuần tự cho các phần tử con */
+.section.active > * {
+    animation: elementFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.section.active > *:nth-child(1) { animation-delay: 0.2s; }
+.section.active > *:nth-child(2) { animation-delay: 0.35s; }
+.section.active > *:nth-child(3) { animation-delay: 0.5s; }
+.section.active > *:nth-child(4) { animation-delay: 0.65s; }
+
+@keyframes elementFadeIn {
+    from { opacity: 0; transform: translateY(20px) translateZ(20px); }
+    to { opacity: 1; transform: translateY(0) translateZ(0); }
+}
+
+.gift-box { font-size: 6.5rem; cursor: pointer; user-select: none; animation: bounceGift 1.2s ease-in-out infinite alternate; }
+.gift-box:hover { animation: hyperShake 0.3s infinite; }
+@keyframes bounceGift { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
+@keyframes hyperShake { 0% { transform: rotate(0deg); } 25% { transform: rotate(-6deg); } 75% { transform: rotate(6deg); } 100% { transform: rotate(0deg); } }
+
+.section-cake-content h1 {
+    font-size: 2.1rem; font-weight: 900; margin-bottom: 10px;
+    background: linear-gradient(45deg, #ff758c, #ff7eb3, #ffaa85);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.cake-wrapper {
+    height: 180px; position: relative; display: flex; justify-content: center; align-items: flex-end; margin-bottom: 25px; width: 100%;
+    z-index: 10;
+}
+.cake {
+    position: relative; width: 160px; height: 100px; cursor: grab;
+    z-index: 10; touch-action: none; 
+}
+.cake:active { cursor: grabbing; }
+
+.layer-bottom {
+    position: absolute; bottom: 0; left: 0; width: 160px; height: 45px;
+    background: #ff5e7e; border-radius: 10px;
+}
+.layer-top {
+    position: absolute; bottom: 45px; left: 20px; width: 120px; height: 40px;
+    background: #ffb7b2; border-radius: 10px;
+    z-index: 2;
+}
+
+.number-candle {
+    font-size: 3.5rem; font-weight: 900; font-family: 'Georgia', serif;
+    background: linear-gradient(#fffb00, #ff5e00); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    position: absolute; bottom: 85px; left: 50%; transform: translateX(-50%);
+    z-index: 4; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    line-height: 1;
+}
+
+.flames-container {
+    position: absolute; bottom: 138px; left: 50%; transform: translateX(-50%);
+    width: 65px; display: flex; justify-content: space-between; padding: 0 2px; z-index: 5;
+}
+.flame {
+    background: radial-gradient(circle, #ffffff 20%, #ffea00 60%, #ff758c 100%);
+    width: 12px; height: 22px; border-radius: 50% 50% 50% 50% / 65% 60% 40% 40%;
+    box-shadow: 0 0 15px rgba(255, 117, 140, 0.8); animation: flicker 0.4s ease-in-out infinite alternate;
+}
+@keyframes flicker { 0% { transform: scale(1) rotate(-1deg); } 100% { transform: scale(1.15) rotate(2deg); } }
+
+.cake.extinguished .flame { opacity: 0; display: none; }
+
+.smoke-particle {
+    position: absolute; background: rgba(240, 240, 245, 0.9); border-radius: 50%;
+    pointer-events: none; z-index: 6; filter: blur(3px); animation: smokeRise 1.2s ease-out forwards;
+}
+@keyframes smokeRise { 0% { transform: translateY(0) scale(1); opacity: 0.8; } 100% { transform: translateY(-70px) translateX(var(--smokeX)) scale(3); opacity: 0; } }
+
+.hint-text { font-size: 0.95rem; color: #e64161; margin-top: 15px; font-weight: bold; animation: pulse 1s infinite alternate; z-index: 20; }
+@keyframes pulse { 0% { opacity: 0.6; } 100% { opacity: 1; } }
+
+.section-letter { justify-content: flex-start !important; overflow-y: auto; padding: 20px !important; }
+.photo-gallery { display: flex; gap: 10px; margin-bottom: 15px; width: 100%; justify-content: center; flex-shrink: 0;}
+.photo-gallery img {
+    width: 95px; height: 120px; object-fit: cover; border: 4px solid white; border-bottom: 20px solid white;
+    border-radius: 4px; box-shadow: 0 6px 15px rgba(255, 105, 180, 0.1); transition: transform 0.4s; cursor: pointer;
+}
+.photo-gallery img:nth-child(1) { transform: rotate(-6deg) translateY(4px); }
+.photo-gallery img:nth-child(2) { transform: scale(1.05) translateY(-4px); z-index: 3; }
+.photo-gallery img:nth-child(3) { transform: rotate(6deg) translateY(4px); }
+.photo-gallery img:hover { transform: scale(1.2) rotate(0deg); z-index: 10; }
+
+.letter-content {
+    background: #fffdfd; color: #5c3a4e; padding: 20px; border-radius: 20px; font-size: 0.92rem; line-height: 1.6; text-align: left;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-top: 5px solid #ff758c; width: 100%; box-sizing: border-box;
+}
+.letter-content h2 { margin-top: 0; color: #ff758c; text-align: center; font-size: 1.2rem; margin-bottom: 10px;}
+#typing-text::after { content: '🌸'; animation: blinkCursor 0.8s infinite; }
+
+.close-btn {
+    background: linear-gradient(45deg, #ff758c, #ff7eb3); color: white; border: none; padding: 12px 40px;
+    font-size: 1.1rem; font-weight: bold; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 15px rgba(255, 117, 140, 0.2); transition: 0.3s;
+}

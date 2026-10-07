@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Happy Birthday Princess 🌸</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <canvas id="fireworksCanvas"></canvas>
+
+    <div class="container">
+        
+        <!-- PHẦN 1: HỘP QUÀ BẤT NGỜ -->
+        <div class="section active" id="part1">
+            <div style="margin-bottom: 20px; pointer-events: none;">
+                <h1 style="font-size: 2.2rem; color: #ff758c; margin: 0; font-weight: bold; line-height: 1.2;">Special Day For You!</h1>
+                <p style="font-size: 1.1rem; color: #ff8e71; margin: 5px 0 0 0; font-weight: 600;">Mon, 12 Oct 2026</p>
+            </div>
+            <h3 style="margin: 0 0 15px 0; font-weight: 700; color: #ff758c; font-size: 1.2rem; pointer-events: none;">MÓN QUÀ SIÊU CẤP ĐÁNG YÊU! ✨</h3>
+            
+            <div style="font-size: 5rem; margin-bottom: 20px; line-height: 1; pointer-events: none;">🌸🧸🎀</div>
+            
+            <div class="gift-box" id="btn-gift">🎁</div>
+            <p style="margin-top: 15px; font-size: 0.95rem; font-weight: bold; color: #ff758c; pointer-events: none;">Chạm vào hộp quà để khui bí mật nhen...</p>
+        </div>
+
+        <!-- PHẦN 2: BÁNH KEM VÀ HIỆU ỨNG THỔI NẾN MA THUẬT -->
+        <div class="section" id="part2">
+            <div class="section-cake-content">
+                <div style="margin-bottom: 15px; pointer-events: none;">
+                    <h1 style="font-size: 2.2rem; color: #ff758c; margin: 0; font-weight: bold; line-height: 1.2;">Special Day For You!</h1>
+                    <p style="font-size: 1.1rem; color: #ff8e71; margin: 5px 0 0 0; font-weight: 600;">Mon, 12 Oct 2026</p>
+                </div>
+
+                <div class="cake-wrapper" id="smoke-container">
+                    <div class="cake" id="interactive-cake">
+                        <div class="flames-container">
+                            <div class="flame" id="f1"></div>
+                            <div class="flame flame-two" id="f2"></div>
+                        </div>
+                        <div class="number-candle">18</div>
+                        <div class="layer-top"></div>
+                        <div class="layer-bottom"></div>
+                    </div>
+                </div>
+                
+                <div style="font-size: 3rem; margin-bottom: 10px; line-height: 1; pointer-events: none;">🧁✨🍡</div>
+                
+                <p style="padding: 0 15px; font-size: 1.05rem; font-weight: 500; line-height: 1.6; color: #d64161; margin-top: 5px; pointer-events: none;">
+                    Chúc mừng YenNhii chính thức bước sang tuổi 18 rực rỡ nhất nha! 🌸
+                </p>
+                <div class="hint-text" style="pointer-events: none;">💨 Hãy chạm vào ngọn nến để "thổi nến" ước nguyện...</div>
+            </div>
+        </div>
+
+        <!-- PHẦN 3: BỨC THƯ TỰ ĐỘNG GÕ CHỮ & 3 ẢNH POLAROID AN TOÀN -->
+        <div class="section section-letter" id="part3">
+            <div class="photo-gallery">
+                <!-- Sử dụng link ảnh Unsplash chất lượng cao sạch mã độc để mồi code chạy mượt -->
+                <img src="https://unsplash.com" alt="Ảnh 1">
+                <img src="https://unsplash.com" alt="Ảnh 2">
+                <img src="https://unsplash.com" alt="Ảnh 3">
+            </div>
+            <div class="letter-content" id="letter-box">
+                <h2>Gửi bạn Nhi những điều tốt đẹp, 👑💝</h2>
+                <div id="typing-text"></div>
+            </div>
+            <div class="hint-text" id="hint-to-p4" style="color: #ff758c; margin-top: 15px; display: none;">👉 Chạm vào bức thư để xem tiếp nhen...</div>
+        </div>
+
+        <!-- PHẦN 4: KẾT THÚC -->
+        <div class="section" id="part4">
+            <div style="font-size: 5rem; margin-bottom: 20px; line-height: 1; pointer-events: none;">🌸✨👑</div>
+            <h1 style="font-size: 2.5rem; margin-bottom: 15px; background: linear-gradient(45deg, #ff758c, #ff7eb3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;">🌸 Cảm Ơn 🌸</h1>
+            <p style="margin-bottom: 35px; max-width: 320px; line-height: 1.7; font-size: 1.05rem; color: #e94e77; font-weight: 500;">Hy vọng món quà nhỏ ngọt ngào này đã mang đến cho cậu một nụ cười thật tươi trong ngày hôm nay! 🥰</p>
+            <p style="font-size: 0.85rem; color: #ff758c; margin-top: -20px; font-weight: bold;">(Đừng quên mở Album ảnh Tbinh gửi kèm nhen!)</p>
+            <button class="close-btn" id="btn-close">Thoát ra</button>
+        </div>
+
+    </div>
+
+    <audio id="birthday-audio" loop preload="auto">
+        <source src="https://soundhelix.com" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
